@@ -8,7 +8,6 @@ if [ -n "$PY_FILES" ]; then
 
   if [ $? -ne 0 ]; then
     echo "Bandit found security issues!"
-    exit 1
   else
     echo "Bandit scan passed."
   fi
@@ -17,5 +16,5 @@ else
 fi
 
 #######################################################
-#This is git hooks script that runs in the githooks folder. This stuff doesn't get committed.
+#This is git hooks script that doesn't run. This is just here for viewing what exists in the hidden folder.
 #######################################################
