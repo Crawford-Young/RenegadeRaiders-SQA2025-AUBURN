@@ -6,6 +6,9 @@ Source Code to Run Tool on All Kubernetes Manifests
 import scanner 
 import pandas as pd 
 import constants
+import typer
+from pathlib import Path
+import os
 
 def getCountFromAnalysis(ls_):
     list2ret           = []
@@ -46,41 +49,34 @@ def getCountFromAnalysis(ls_):
     return list2ret
 
 
-def main(directory: Path = typer.Argument(..., exists=True, help="Absolute path to the folder than contains Kubernetes manifests"),
-         ):
+def main(directory: Path):
     """
     Run KubeSec in a Kubernetes directory and get results in a CSV file.
-
     """
-    content_as_ls, sarif_json   = scanner.runScanner( directory )
+    directory = str(directory)  # Ensure the directory is a string
     
+    # Check if the directory exists (useful for debugging purposes)
+    if not os.path.isdir(directory):
+        print(f"Directory {directory} does not exist.")
+        return
+
+    content_as_ls, sarif_json = scanner.runScanner(directory)
+
     with open("SLIKUBE.sarif", "w") as f:
-      f.write(sarif_json)
+        f.write(sarif_json)
 
-    df_all          = pd.DataFrame( getCountFromAnalysis( content_as_ls ) )
-    outfile = Path(directory, "slikube_results.csv")
+    df_all = pd.DataFrame(getCountFromAnalysis(content_as_ls))
+    
+    # Option 2: Save in a subdirectory (create the 'output' folder inside the provided directory)
+    output_directory = os.path.join(directory, "output")
+    os.makedirs(output_directory, exist_ok=True)  # Create the 'output' directory if it doesn't exist
+    outfile = os.path.join(output_directory, "slikube_results.csv")
 
-    df_all.to_csv( outfile, header= constants.CSV_HEADER , index=False, encoding= constants.CSV_ENCODING )
-
+    # Save the CSV output
+    df_all.to_csv(outfile, header=constants.CSV_HEADER, index=False, encoding=constants.CSV_ENCODING)
 
 if __name__ == '__main__':
-
-    '''
-    DO NOT DELETE ALL IN K8S_REPOS AS TAINT TRACKING RELIES ON BASH SCRIPTS, ONE OF THE STRENGTHS OF THE TOOL 
-    '''
-    # ORG_DIR         = '/Users/arahman/K8S_REPOS/GITHUB_REPOS/'
-    # OUTPUT_FILE_CSV = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/Kubernetes/StaticTaint/data/V16_GITHUB_OUTPUT.csv'
-
-    # ORG_DIR         = '/Users/arahman/K8S_REPOS/GITLAB_REPOS/'
-    # OUTPUT_FILE_CSV = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/Kubernetes/StaticTaint/data/V16_GITLAB_OUTPUT.csv'
-
-
-    # ORG_DIR         = '/Users/arahman/K8S_REPOS/BRINTO_REPOS/'
-    # OUTPUT_FILE_CSV = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/Kubernetes/StaticTaint/data/V16_BRINTO_OUTPUT.csv'
-
-    # take sarif_json from scanner
-    main()
-
+    typer.run(main)
 
 
 

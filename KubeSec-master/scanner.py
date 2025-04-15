@@ -632,6 +632,7 @@ def scanDockerSock(path_script ):
     return dic  
 
 def runScanner(dir2scan):
+    sarif_log = []  
     all_content   = [] 
     all_yml_files = getYAMLFiles(dir2scan)
     val_cnt       = 0 
@@ -732,8 +733,10 @@ def runScanner(dir2scan):
             print(" Weird YAML --> ",yml_)
             weird_yaml.append(yml_)
 
-        sarif_json = to_json(sarif_log)
-        #print(sarif_json)       
+    if sarif_log:
+        sarif_json = to_json(sarif_log)        
+    else:
+          sarif_json = "{}"
 
 
     return all_content, sarif_json
