@@ -67,11 +67,13 @@ def fuzz_keyMiner():
     print()
 
 def fuzz_getKeyRecursively():
-    result_list = []
+   
     print()
     print("Running fuzzing for getKeyRecursively")
+    result_list = []
     getKeyRecursively(test_dict, result_list)
     print(result_list)
+    result_list = []
     getKeyRecursively(test_dict2, result_list)
     print(result_list)
     print()
@@ -87,10 +89,13 @@ def fuzz_getValuesRecursively():
     print()
 
 def fuzz_getValsFromKey():
-    result_list = []
     print()
     print("Running fuzzing for getValsFromKey")
+    result_list = []
     getValsFromKey(test_dict, "key1", result_list)
+    print(result_list)
+    result_list = []
+    getValsFromKey(test_dict2, "id", result_list)
     print(result_list)
     print()
 
