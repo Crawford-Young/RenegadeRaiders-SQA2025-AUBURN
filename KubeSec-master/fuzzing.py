@@ -104,6 +104,16 @@ def fuzz_update_json_paths():
     print("Running fuzzing for update_json_paths")
     result = update_json_paths(["[3].metadata.name", "[5].data[2].value"])
     print(result)
+    result = update_json_paths(["[0].data.name"])
+    print(result)
+    result = update_json_paths(["data.name"])
+    print(result)
+    result = update_json_paths(["[12]"])
+    print(result)
+    result = update_json_paths(["[3][4].nested.value"])
+    print(result)
+    result = update_json_paths(["[9].a[1].b[2].c"])
+    print(result)
     print()
     
 
