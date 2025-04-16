@@ -15,38 +15,91 @@ test_dict = {
         "key2": "value3",
         "key3": {
             "subkey3": "value4"
+        },
+        "key3": {
+            "subkey3": {
+                "subKey4": "value5"
+            }
         }
     }
 }
 
+test_dict2 = {
+    "config": {
+        "settings": {
+            "theme": "dark",
+            "language": "en"
+        },
+        "users": [
+            {
+                "id": 1,
+                "name": "Alice"
+            },
+            {
+                "id": 2,
+                "name": "Bob"
+            }
+        ]
+    },
+    "status": "active",
+    "metadata": {
+        "created": "2023-01-01",
+        "modified": "2023-06-01"
+    }
+}
+
+
 def fuzz_keyMiner():
+    print()
     print("Running fuzzing for keyMiner")
     result = keyMiner(test_dict, "value1")
     print(result)
     result = keyMiner(test_dict, "nonexistent_value")
     print(result)
+    result = keyMiner(test_dict, "value2")
+    print(result)
+    result = keyMiner(test_dict, "value3")
+    print(result)
+    result = keyMiner(test_dict, "value4")
+    print(result)
+    result = keyMiner(test_dict, "value5")
+    print(result)
+    print()
 
 def fuzz_getKeyRecursively():
     result_list = []
+    print()
     print("Running fuzzing for getKeyRecursively")
     getKeyRecursively(test_dict, result_list)
     print(result_list)
+    getKeyRecursively(test_dict2, result_list)
+    print(result_list)
+    print()
+
 
 def fuzz_getValuesRecursively():
+    print()
     print("Running fuzzing for getValuesRecursively")
     result = list(getValuesRecursively(test_dict))
     print(result)
+    result = list(getValuesRecursively(test_dict2))
+    print(result)
+    print()
 
 def fuzz_getValsFromKey():
     result_list = []
+    print()
     print("Running fuzzing for getValsFromKey")
     getValsFromKey(test_dict, "key1", result_list)
     print(result_list)
+    print()
 
 def fuzz_update_json_paths():
+    print()
     print("Running fuzzing for update_json_paths")
     result = update_json_paths(["[3].metadata.name", "[5].data[2].value"])
     print(result)
+    print()
     
 
 if __name__ == "__main__":
