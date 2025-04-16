@@ -1,0 +1,21 @@
+#!/bin/sh
+
+PY_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.py$')
+
+if [ -n "$PY_FILES" ]; then
+  echo "Python files staged. Running Bandit on full project..."
+  bandit -r . -f csv -o bandit_report.csv
+
+  if [ $? -ne 0 ]; then
+    echo "Bandit found security issues!"
+    exit 1
+  else
+    echo "Bandit scan passed."
+  fi
+else
+  echo "No Python files staged. Skipping Bandit scan."
+fi
+
+#######################################################
+#This is git hooks script that runs in the githooks folder. This stuff doesn't get committed.
+#######################################################
