@@ -7,7 +7,7 @@ import scanner
 import pandas as pd 
 import constants
 
-# comment for pre-commit
+# commented out for testing
 
 def getCountFromAnalysis(ls_):
     list2ret           = []
