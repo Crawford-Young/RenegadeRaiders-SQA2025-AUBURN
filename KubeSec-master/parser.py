@@ -320,8 +320,10 @@ def show_line_for_paths(  filepath, key): #key_jsonpath_mapping is a global dict
     env_PATH = r"C:\ProgramData\Chocolatey\bin"
     lines = []
     adjusted_lines = []
-    print("This is the mapping for the Key",key,"--->",key_jsonpath_mapping[key]) 
-    # for k in key_jsonpath_mapping:
+    if key in key_jsonpath_mapping:
+        print("This is the mapping for the Key", key, "--->", key_jsonpath_mapping[key])
+    else:
+        print(f"⚠️ Key '{key}' not found in mapping. Known keys: {list(key_jsonpath_mapping.keys())}")    # for k in key_jsonpath_mapping:
     #     print("Key--->",k, "Value--->",key_jsonpath_mapping[k])
     if key_jsonpath_mapping.get(key) is not None:
         if isinstance(key_jsonpath_mapping[key], list):
