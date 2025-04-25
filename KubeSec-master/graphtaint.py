@@ -20,7 +20,7 @@ def getYAMLFiles(path_to_dir):
            if(os.path.exists(full_p_file)):
              if (full_p_file.endswith( constants.YAML_EXTENSION  ) or full_p_file.endswith( constants.YML_EXTENSION  )  ):
                valid_.append(full_p_file)
-    logger.debug("Found YAML files: %s", valid_)
+    logger.info("Found YAML files: %s", valid_)
     return valid_ 
 
 def constructHelmString(hiera_tuple): 
@@ -28,7 +28,7 @@ def constructHelmString(hiera_tuple):
     upper_key, key, _ = hiera_tuple 
     if ( upper_key != key  ):
         str2ret =   constants.DOT_SYMBOL +  constants.HELM_VALUE_KW + constants.DOT_SYMBOL + upper_key + constants.DOT_SYMBOL + key 
-    logger.debug("Constructed helm string: %s", str2ret)
+    logger.info("Constructed helm string: %s", str2ret)
     return str2ret 
 
 def getHelmTemplateContent( templ_dir ):
