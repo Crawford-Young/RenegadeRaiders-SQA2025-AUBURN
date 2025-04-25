@@ -5,7 +5,6 @@ from parser import getValuesRecursively
 from parser import getValsFromKey
 from parser import update_json_paths
 
-
 test_dict = {
     "root": {
         "key1": {
