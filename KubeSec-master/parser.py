@@ -143,7 +143,6 @@ def readYAMLAsStr( path_script ):
 
 # This function checks whether our parser throws an exception for reading the YAML file. 
 def checkParseError( path_script ):
-    logger.info(f"Checking for parse errors in file: {path_script}")
     flag = True
     with open(path_script, constants.FILE_READ_FLAG) as yml:
         yaml = ruamel.yaml.YAML()

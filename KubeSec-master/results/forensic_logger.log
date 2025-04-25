@@ -1,1 +1,3 @@
-2025-04-25 15:48:23,067 - INFO - main - Analysis is beggining and results are outputted to KubeSec-master/results for both logging and slikube_results.csv
+2025-04-25 18:16:09,131 - INFO - runScanner - Starting scan on directory: /home/TEST_ARTIFACTS
+2025-04-25 18:16:33,121 - INFO - runScanner - Completed scan on directory: /home/TEST_ARTIFACTS
+2025-04-25 18:16:33,121 - INFO - main - Analysis is beginning and results are outputted to KubeSec-master/results for both logging and slikube_results.csv

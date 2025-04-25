@@ -643,7 +643,6 @@ def runScanner(dir2scan):
     logger.info(f"Starting scan on directory: {dir2scan}")  # Log the start of the scan
 
     for yml_ in all_yml_files:
-        logger.info(f"Analyzing file: {yml_}")  # Log the file being analyzed
         '''
         Need to filter out `.github/workflows.yml files` first 
         '''
@@ -740,10 +739,10 @@ def runScanner(dir2scan):
             print(" Weird YAML --> ",yml_)
             weird_yaml.append(yml_)
 
-        logger.info(f"Completed scan on directory: {dir2scan}")  # Log the end of the scan
         sarif_json = to_json(sarif_log)
         #print(sarif_json)       
 
+    logger.info(f"Completed scan on directory: {dir2scan}")  # Log the end of the scan
 
     return all_content, sarif_json
 
