@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+2025-04-25 18:16:09,131 - INFO - runScanner - Starting scan on directory: /home/TEST_ARTIFACTS
+2025-04-25 18:16:33,121 - INFO - runScanner - Completed scan on directory: /home/TEST_ARTIFACTS
+2025-04-25 18:16:33,121 - INFO - main - Analysis is beginning and results are outputted to KubeSec-master/results for both logging and slikube_results.csv
+=======
 2025-04-25 15:48:23,067 - INFO - main - Analysis is beggining and results are outputted to KubeSec-master/results for both logging and slikube_results.csv
 2025-04-25 18:10:11,414 - INFO - constructHelmString - Constructed helm string: .Values.hdbppdb.password
 2025-04-25 18:10:11,416 - INFO - constructHelmString - Constructed helm string: .Values.db.password
@@ -114,3 +119,4 @@
 2025-04-25 18:10:31,285 - INFO - constructHelmString - Constructed helm string: .Values.grafana.prom-operator.password
 2025-04-25 18:10:31,286 - INFO - constructHelmString - Constructed helm string: .Values.password.prom-operator.password
 2025-04-25 18:10:55,820 - INFO - main - Analysis is beginning and results are outputted to KubeSec-master/results for both logging and slikube_results.csv
+>>>>>>> @{-1}
