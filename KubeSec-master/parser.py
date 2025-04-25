@@ -14,9 +14,6 @@ import pathlib as pl
 import re
 import subprocess
 import os
-import myLogger
-
-logger = myLogger.giveMeLoggingObject()
 
 #update basepath
 base_path = r" "
