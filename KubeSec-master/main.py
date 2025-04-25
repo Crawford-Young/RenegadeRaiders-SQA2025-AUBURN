@@ -6,6 +6,10 @@ Source Code to Run Tool on All Kubernetes Manifests
 import scanner 
 import pandas as pd 
 import constants
+import typer
+from pathlib import Path
+
+
 
 # commented out for testing
 
@@ -48,12 +52,15 @@ def getCountFromAnalysis(ls_):
     return list2ret
 
 
-def main(directory: Path = typer.Argument(..., exists=True, help="Absolute path to the folder than contains Kubernetes manifests"),
-         ):
+
+def main():
     """
     Run KubeSec in a Kubernetes directory and get results in a CSV file.
 
-    """
+    """        
+    
+    directory = Path("/home/TEST_ARTIFACTS")
+
     content_as_ls, sarif_json   = scanner.runScanner( directory )
     
     with open("SLIKUBE.sarif", "w") as f:
