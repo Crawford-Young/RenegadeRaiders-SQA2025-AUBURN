@@ -4,6 +4,6 @@
 
 To run EVERYTHING:
 
-cd .\KubeSec-master\ 
-docker build -t kubesec-runner . 
+cd .\KubeSec-master\  
+docker build -t kubesec-runner .  
 docker run --rm -v "$(pwd)/results:/results" kubesec-runner
