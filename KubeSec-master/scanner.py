@@ -12,6 +12,10 @@ import numpy as np
 import json
 from sarif_om import *
 from jschema_to_python.to_json import to_json
+import myLogger
+
+# Get the logger object
+logger = myLogger.giveMeLoggingObject()
 
 '''Global SarifLog Object definition and Rule definition for SLI-KUBE. Rule IDs are ordered by the sequence as it appears in the TOSEM paper'''
 
@@ -635,7 +639,11 @@ def runScanner(dir2scan):
     all_content   = [] 
     all_yml_files = getYAMLFiles(dir2scan)
     val_cnt       = 0 
+
+    logger.info(f"Starting scan on directory: {dir2scan}")  # Log the start of the scan
+
     for yml_ in all_yml_files:
+        logger.info(f"Analyzing file: {yml_}")  # Log the file being analyzed
         '''
         Need to filter out `.github/workflows.yml files` first 
         '''
@@ -732,6 +740,7 @@ def runScanner(dir2scan):
             print(" Weird YAML --> ",yml_)
             weird_yaml.append(yml_)
 
+        logger.info(f"Completed scan on directory: {dir2scan}")  # Log the end of the scan
         sarif_json = to_json(sarif_log)
         #print(sarif_json)       
 
