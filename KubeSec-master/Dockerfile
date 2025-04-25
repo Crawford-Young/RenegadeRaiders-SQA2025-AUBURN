@@ -17,12 +17,13 @@ SHELL ["/bin/bash", "--login", "-c"]
 ENV PATH /opt/conda/envs/KUBESEC/bin:$PATH
 
 # The code to run when container is started:
-COPY constants.py graphtaint.py main.py parser.py scanner.py myLogger.py /app/
+COPY constants.py graphtaint.py main.py parser.py scanner.py myLogger.py fuzzing.py /app/
 COPY TEST_ARTIFACTS/ /home/TEST_ARTIFACTS/
 #ENTRYPOINT ["python", "/app/main.py"]
 VOLUME ["/results"]
 
 # CMD bash -c "python main.py && exec bash"
-CMD bash -c "python main.py && cp /home/TEST_ARTIFACTS/slikube_results.csv /results/slikube_results.csv && exec bash"
+CMD bash -c "python main.py && python fuzzing.py && cp /home/TEST_ARTIFACTS/slikube_results.csv /results/slikube_results.csv && exec bash"
+
 
 

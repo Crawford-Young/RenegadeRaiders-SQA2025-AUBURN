@@ -9,7 +9,9 @@ import constants
 import typer
 from pathlib import Path
 
+import myLogger
 
+logger = myLogger.giveMeLoggingObject()
 
 # commented out for testing
 
@@ -66,6 +68,8 @@ def main():
     with open("SLIKUBE.sarif", "w") as f:
       f.write(sarif_json)
 
+    logger.info("Analysis is beginning and results are outputted to KubeSec-master/results for both logging and slikube_results.csv")
+    
     df_all          = pd.DataFrame( getCountFromAnalysis( content_as_ls ) )
     outfile = Path(directory, "slikube_results.csv")
 
