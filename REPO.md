@@ -59,7 +59,7 @@ docker build -t kubesec-runner .
 docker run --rm -v "$(pwd)/results:/results" kubesec-runner
 
 
-screenshots for fuzzing found in: fuzzer_run.png, fuzzing_failure_1.png
+screenshots for fuzzing found in: fuzzer_run.png, fuzzing_failure_1.png, fuzzer-github-actions.png
 
 screenshots for forensics found in: forensics_logs_after_run.png 
 
