@@ -33,3 +33,35 @@ For fuzzing, we fuzzed 5 functions with many different values for each method. W
 For git hooks, we copied the format from workshop 8 for most of the githook, and then we also only ran bandit if python files were changed.
 
 
+To run:
+cd .\KubeSec-master\  
+docker build -t kubesec-runner .  
+docker run --rm -v "$(pwd)/results:/results" kubesec-runner
+
+To see results of forensic logs:
+run these commands and examine final output. When main.py is run in docker, logs are generated.
+cd .\KubeSec-master\  
+docker build -t kubesec-runner .  
+docker run --rm -v "$(pwd)/results:/results" kubesec-runner
+see KubeSec-master/results/forensic_logger.log for results
+
+To see results of githook bandit run:
+ensure pre-commit is in .git/hooks
+make sure it is executable
+edit a python file
+commit
+see bandit_report.csv
+
+To see results of fuzzing:
+run these commands and examine terminal output. Docker file is designed to run main.py and fuzzing.py
+cd .\KubeSec-master\  
+docker build -t kubesec-runner .  
+docker run --rm -v "$(pwd)/results:/results" kubesec-runner
+
+
+screenshots for fuzzing found in: fuzzer_run.png, fuzzing_failure_1.png
+
+screenshots for forensics found in: forensics_logs_after_run.png 
+
+sceenshots for pre-commit found in: testing_githooks.png
+
