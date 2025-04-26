@@ -1,8 +1,6 @@
 import logging
 import os
 
-#
-
 def giveMeLoggingObject():
     format_str = '%(asctime)s - %(levelname)s - %(funcName)s - %(message)s'
     file_name = '/results/forensic_logger.log'
